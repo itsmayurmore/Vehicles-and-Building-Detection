@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Home - Vehicle and Building Detection Project</title>
+<link rel="stylesheet" href="static/bootstrap.min.css" />        
+<script src="static/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <section>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Detection System</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </section>
+<p><h1 align="center">Vehicle and Building Detection Project</h1></p>
+<div class="container" align="center">
+<div class="row">
+    <h2>Select a file to upload</h2>
+    <p>
+        {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+                
+              <li class="alert alert-warning" role="alert">{{ message }}</li>
+                
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        {% with messages = get_flashed_messages(category_filter=["info"]) %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+                
+              <li class="alert alert-success" role="alert">{{ message }}</li>
+                
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+    {% endif %}
+    
+</div>
+
+<div class="container" style="background-color: #EBEDEF;margin-top: 5%;">
+
+<div class="tab-content">
+  <div class="tab-pane active" id="upload-image" role="tabpanel" aria-labelledby="uploadimg">
+      <div class="row">
+          <div class="col p-3">
+    
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="btn" autocomplete="off" required style="background-color: #2471A3; color:azure">
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit" class="btn btn-info" style="background-color: #2471A3; color:azure">
+        </p>
+    </form>
+
+
+    {% if filename %}
+
+    <form method="post" action="/predict" enctype="multipart/form-data">
+        
+        <p>
+            <input type="submit" value="Predict" class="btn btn-info" style="background-color: #2471A3; color:azure">
+        </p>
+    </form>
+
+{% endif %}
+
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+    
+</div>
+</div>
+</body>
+</html>

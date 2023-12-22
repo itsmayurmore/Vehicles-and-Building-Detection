@@ -1,0 +1,12 @@
+
+path: ../Dataset  
+train: images  
+val: images
+
+# Classes
+names:
+  0: 2-wheeler
+  1: 3-wheeler
+  2: 4-wheeler
+  3: Bicycle
+  4: Building
